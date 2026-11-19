@@ -1,0 +1,24 @@
+{
+  "id": "media.smart_finish_comfyui_measured",
+  "display_name": "Smart Finish — Measured Compression",
+  "aliases": ["smart compression", "vmaf upscale", "measured video compression", "automatic quality encode"],
+  "tags": ["media", "video", "upscale", "comfyui", "compression", "quality", "vmaf"],
+  "category": "media",
+  "description": "Upscale with verified local ComfyUI model and choose a conservative H.264 CRF using short full-resolution VMAF, SSIM and PSNR pilots when source geometry allows. Otherwise keep high-quality CRF16. Real video, audio, clock and final publication checks remain mandatory.",
+  "worker_type": "python",
+  "worker_entry": "sscp.workers.smart_finish.main",
+  "script_path": "command_palette/workers/python/src/sscp/workers/smart_finish/main.py",
+  "arguments": {"backend_id": "comfyui-gan", "model_id": "auto-quality", "quality_policy": "best_quality", "compression_profile": "quality", "compression_strategy": "measured", "final_long_edge": 3840},
+  "selected_file_requirements": {
+    "required": true, "allow_files": true, "allow_folders": false,
+    "extensions": [".mp4", ".mov", ".mkv", ".m4v", ".webm"],
+    "min_count": 1, "max_count": 1, "preserve_order": true
+  },
+  "queue_behavior": {"mode": "single_command", "dedupe": "request_key"},
+  "progress_behavior": {"mode": "job_json", "show_overlay": true, "allow_cancel": true},
+  "sound_profile": "video_upscale_done",
+  "platform_support": ["win10", "win11"],
+  "confirmation_required": false,
+  "danger_level": "safe",
+  "output_folder_behavior": "open_primary_output_folder"
+}

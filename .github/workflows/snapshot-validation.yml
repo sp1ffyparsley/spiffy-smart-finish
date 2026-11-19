@@ -1,0 +1,18 @@
+name: Public source snapshot integrity
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  snapshot:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate imported source snapshot and Python syntax
+        run: python scripts/verify_public_snapshot.py

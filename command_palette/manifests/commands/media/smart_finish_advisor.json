@@ -1,0 +1,26 @@
+{
+  "id": "media.smart_finish_advisor",
+  "display_name": "Smart Finish — Quality Options (No Render)",
+  "aliases": ["smart finish quality", "smart finish options", "6K upscale options", "best quality upscale", "video resolution advisor"],
+  "tags": ["media", "video", "upscale", "quality", "resolution", "comfyui"],
+  "category": "media",
+  "description": "Inspect selected videos and show source-specific 2K/3K/4K/6K/8K eligibility, real model limits and available timing evidence, without rendering, generating footage or starting a GPU job.",
+  "worker_type": "python",
+  "worker_entry": "sscp.workers.smart_finish.main",
+  "script_path": "command_palette/workers/python/src/sscp/workers/smart_finish/main.py",
+  "arguments": {"quality_policy": "best_quality"},
+  "selected_file_requirements": {
+    "required": true,
+    "allow_files": true,
+    "allow_folders": false,
+    "extensions": [".mp4", ".mov", ".mkv", ".m4v", ".webm", ".avi", ".mxf"],
+    "min_count": 1,
+    "max_count": 32,
+    "preserve_order": true
+  },
+  "queue_behavior": {"mode": "single_command", "dedupe": "request_key"},
+  "progress_behavior": {"mode": "job_json", "show_overlay": true, "allow_cancel": true},
+  "platform_support": ["win10", "win11"],
+  "confirmation_required": false,
+  "danger_level": "safe"
+}

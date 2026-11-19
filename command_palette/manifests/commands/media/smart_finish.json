@@ -1,0 +1,28 @@
+{
+  "id": "media.smart_finish",
+  "display_name": "Smart Finish — Automatic Upscale",
+  "aliases": ["smart finish", "automatic natural upscale", "adaptive topaz", "protect captions", "natural video enhancement"],
+  "tags": ["media", "video", "topaz", "adaptive", "natural", "captions"],
+  "category": "media",
+  "description": "Automatically analyzes finished videos with the existing Topaz worker and preserves source detail, captions and audio. Use Smart Finish — Quality Options to inspect 4K/6K/8K capability before choosing output geometry. Larger rasters do not imply higher-resolution neural inference.",
+  "worker_type": "python",
+  "worker_entry": "sscp.workers.smart_finish.main",
+  "script_path": "command_palette/workers/python/src/sscp/workers/smart_finish/main.py",
+  "arguments": {"output_fps": 60},
+  "selected_file_requirements": {
+    "required": true,
+    "allow_files": true,
+    "allow_folders": false,
+    "extensions": [".mp4", ".mov", ".mkv", ".m4v", ".webm", ".avi", ".mxf"],
+    "min_count": 1,
+    "max_count": 32,
+    "preserve_order": true
+  },
+  "queue_behavior": {"mode": "single_command", "dedupe": "request_key"},
+  "progress_behavior": {"mode": "job_json", "show_overlay": true, "allow_cancel": true},
+  "sound_profile": "video_upscale_done",
+  "platform_support": ["win10", "win11"],
+  "confirmation_required": false,
+  "danger_level": "safe",
+  "output_folder_behavior": "open_primary_output_folder"
+}
